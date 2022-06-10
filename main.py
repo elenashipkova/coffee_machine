@@ -71,7 +71,6 @@ class CoffeeMachine:
         if len(shared_dict) == 0:
             print('I have enough resources, making you a coffee!')
             for j in self.coffee_remains:
-                print(j)
                 if j == 'money':
                     self.coffee_remains[j] += self.COFFEE_TYPES[coffee_type][j]
                 else:
