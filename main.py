@@ -47,7 +47,6 @@ class CoffeeMachine:
                 message = f"{self.UNITS['money']}{value} of {item}"
             print(message)
 
-
     def choose_action(self):
         action = input('Write action (buy, fill, take, remaining, exit):')
         return action
@@ -71,11 +70,12 @@ class CoffeeMachine:
                 shared_dict[i] = self.coffee_remains[i]
         if len(shared_dict) == 0:
             print('I have enough resources, making you a coffee!')
-            self.coffee_remains['water'] -= self.COFFEE_TYPES[coffee_type]['water']
-            self.coffee_remains['milk'] -= self.COFFEE_TYPES[coffee_type]['milk']
-            self.coffee_remains['coffee beans'] -= self.COFFEE_TYPES[coffee_type]['coffee beans']
-            self.coffee_remains['disposable cups'] -= self.COFFEE_TYPES[coffee_type]['disposable cups']
-            self.coffee_remains['money'] += self.COFFEE_TYPES[coffee_type]['money']
+            for j in self.coffee_remains:
+                print(j)
+                if j == 'money':
+                    self.coffee_remains[j] += self.COFFEE_TYPES[coffee_type][j]
+                else:
+                    self.coffee_remains[j] -= self.COFFEE_TYPES[coffee_type][j]
         else:
             shared_list = ', '.join(list(shared_dict.keys()))
             print(f'Sorry, not enough {shared_list}!')
